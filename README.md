@@ -16,7 +16,10 @@ I'm always open to collaboration and discussing exciting opportunities. If you'd
 Email: piiyushkumar234@gmail.com
 
 LinkedIn: https://www.linkedin.com/in/piyush-kumar-304b06148/
+
 <!-- Twitter: @YourTwitterHandle -->
+Twitter: https://twitter.com/mr_piyush110
+
 Don't hesitate to reach out if you have any questions, suggestions, or if you simply want to connect. I look forward to hearing from you!
 
 
