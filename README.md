@@ -22,6 +22,10 @@ LinkedIn: https://www.linkedin.com/in/piyush-kumar-304b06148/
 <!-- Twitter: @YourTwitterHandle -->
 Twitter: https://twitter.com/mr_piyush110
 
+GeeksforGeeks : https://www.geeksforgeeks.org/user/piyushchpkumar/?ref=header_profile
+
+Leetcode : https://leetcode.com/u/kumar-piiyush/
+
 Don't hesitate to reach out if you have any questions, suggestions, or if you simply want to connect. I look forward to hearing from you!
 
 
