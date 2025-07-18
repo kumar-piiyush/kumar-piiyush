@@ -2,4 +2,4 @@ Welcome to  my personal portfolio website. This website serves as a showcase of 
 software developer with a strong foundation in Java Spring Boot and my additional keen interest in new upcoming technologies like AI and blockchain.
 
 
-To run visit : https://piiyush-kumar.github.io/portfolio/
+To run visit : https://kumar-piiyush.github.io/kumar-piiyush/portfolio
