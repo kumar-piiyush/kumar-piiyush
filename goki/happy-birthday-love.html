@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday My Love, Goki!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Crimson+Text:wght@400;600&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 50%, #9b59b6 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .main-page {
+            display: block;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .letter-page {
+            display: none;
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 1.5s ease-out;
+        }
+
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: #fff;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #f8f9fa;
+            font-weight: 400;
+        }
+
+        .balloons-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            text-align: center;
+            animation: slideInUp 1.2s ease-out;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .balloons-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 30px;
+        }
+
+        .balloons-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .balloon {
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .balloon:nth-child(2) { animation-delay: 0.5s; }
+        .balloon:nth-child(3) { animation-delay: 1s; }
+        .balloon:nth-child(4) { animation-delay: 1.5s; }
+        .balloon:nth-child(5) { animation-delay: 2s; }
+
+        .balloon-shape {
+            width: 80px;
+            height: 100px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .balloon:nth-child(1) .balloon-shape { background: linear-gradient(145deg, #ff6b6b, #ee5a52); }
+        .balloon:nth-child(2) .balloon-shape { background: linear-gradient(145deg, #4ecdc4, #44a08d); }
+        .balloon:nth-child(3) .balloon-shape { background: linear-gradient(145deg, #45b7d1, #3498db); }
+        .balloon:nth-child(4) .balloon-shape { background: linear-gradient(145deg, #96ceb4, #85c1a1); }
+        .balloon:nth-child(5) .balloon-shape { background: linear-gradient(145deg, #feca57, #ff9f43); }
+
+        .balloon-string {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 50px;
+            background: #2c3e50;
+            opacity: 0.7;
+        }
+
+        .balloon:hover {
+            transform: translateY(-10px) scale(1.05);
+        }
+
+        .balloon.popped {
+            animation: pop 0.5s ease-out forwards;
+        }
+
+        .balloon-instruction {
+            font-family: 'Crimson Text', serif;
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .surprise-button {
+            background: linear-gradient(145deg, #e74c3c, #c0392b);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            border-radius: 35px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(231, 76, 60, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin: 20px auto;
+            display: none;
+        }
+
+        .surprise-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(231, 76, 60, 0.5);
+            background: linear-gradient(145deg, #c0392b, #e74c3c);
+        }
+
+        .cake-section {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            text-align: center;
+            animation: slideInLeft 1.2s ease-out;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .cake-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        .cake {
+            position: relative;
+            width: 320px;
+            height: 220px;
+            margin: 0 auto 30px;
+            background: linear-gradient(145deg, #8B4513, #A0522D);
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .cake::before {
+            content: '';
+            position: absolute;
+            top: -25px;
+            left: 25px;
+            right: 25px;
+            height: 45px;
+            background: linear-gradient(145deg, #FFB6C1, #FFC0CB);
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .cake::after {
+            content: 'Happy Birthday Goki';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.3rem;
+            color: #fff;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .candles {
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 25px;
+        }
+
+        .candle {
+            width: 10px;
+            height: 35px;
+            background: linear-gradient(145deg, #e74c3c, #c0392b);
+            border-radius: 5px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .candle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.5);
+        }
+
+        .flame {
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 14px;
+            height: 18px;
+            background: radial-gradient(circle, #FFD700, #FF6347);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: flicker 2s infinite ease-in-out;
+        }
+
+        .flame.blown {
+            animation: blowOut 0.6s ease-out forwards;
+        }
+
+        .music-section {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            text-align: center;
+            animation: slideInRight 1.2s ease-out;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .music-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        .music-controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .photo-section {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            text-align: center;
+            animation: slideInLeft 1.2s ease-out;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .photo-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .photo-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            background: #fff;
+        }
+
+        .photo-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .elegant-button {
+            background: linear-gradient(145deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            font-family: 'Crimson Text', serif;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
+            margin: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .elegant-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(52, 152, 219, 0.4);
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #2c3e50;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Crimson Text', serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-2px);
+        }
+
+        .love-letter-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            animation: slideInUp 1.2s ease-out;
+            position: relative;
+        }
+
+        .love-letter-section::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            border-radius: 22px;
+            z-index: -1;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+
+        .letter-header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 20px;
+        }
+
+        .letter-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .letter-date {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.3rem;
+            color: #7f8c8d;
+        }
+
+        .letter-content {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #2c3e50;
+            text-align: justify;
+            margin-bottom: 30px;
+        }
+
+        .letter-content p {
+            margin-bottom: 25px;
+            text-indent: 40px;
+        }
+
+        .letter-content .highlight {
+            color: #e74c3c;
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        .letter-signature {
+            text-align: right;
+            margin-top: 40px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            color: #2c3e50;
+        }
+
+        .footer-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            color: #fff;
+            text-align: center;
+            margin-top: 40px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .floating-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: floatParticle 6s linear infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes pop {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3); opacity: 0.7; }
+            100% { transform: scale(0); opacity: 0; }
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4); }
+            50% { background: linear-gradient(45deg, #96ceb4, #45b7d1, #4ecdc4, #ff6b6b); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes flicker {
+            0%, 100% { transform: translateX(-50%) scale(1); opacity: 1; }
+            50% { transform: translateX(-50%) scale(1.1) rotate(3deg); opacity: 0.9; }
+        }
+
+        @keyframes blowOut {
+            0% { opacity: 1; transform: translateX(-50%) scale(1); }
+            100% { opacity: 0; transform: translateX(-50%) scale(0.3) translateY(-30px); }
+        }
+
+        @keyframes floatParticle {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+            
+            .balloons-container {
+                gap: 20px;
+            }
+            
+            .balloon-shape {
+                width: 60px;
+                height: 80px;
+            }
+            
+            .cake {
+                width: 280px;
+                height: 180px;
+            }
+            
+            .love-letter-section {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-particles" id="floating-particles"></div>
+    
+    <div class="container">
+        <!-- Main Page -->
+        <div class="main-page" id="main-page">
+            <div class="header">
+                <h1 class="main-title">Happy Birthday My Love, Goki!</h1>
+                <p class="subtitle">A Special Day for My Beautiful Queen</p>
+            </div>
+
+            <div class="balloons-section">
+                <h2 class="balloons-title">Pop the Balloons to Celebrate!</h2>
+                <p class="balloon-instruction">Click on each balloon to pop them and unlock surprises</p>
+                <div class="balloons-container">
+                    <div class="balloon" onclick="popBalloon(this)">
+                        <div class="balloon-shape"></div>
+                        <div class="balloon-string"></div>
+                    </div>
+                    <div class="balloon" onclick="popBalloon(this)">
+                        <div class="balloon-shape"></div>
+                        <div class="balloon-string"></div>
+                    </div>
+                    <div class="balloon" onclick="popBalloon(this)">
+                        <div class="balloon-shape"></div>
+                        <div class="balloon-string"></div>
+                    </div>
+                    <div class="balloon" onclick="popBalloon(this)">
+                        <div class="balloon-shape"></div>
+                        <div class="balloon-string"></div>
+                    </div>
+                    <div class="balloon" onclick="popBalloon(this)">
+                        <div class="balloon-shape"></div>
+                        <div class="balloon-string"></div>
+                    </div>
+                </div>
+                <button class="surprise-button" onclick="showSurprise()">
+                    🎁 Click for Your Special Surprise! 🎁
+                </button>
+            </div>
+
+            <div class="cake-section">
+                <h2 class="cake-title">Make a Wish, My Beautiful Goki</h2>
+                <div class="cake">
+                    <div class="candles">
+                        <div class="candle" onclick="blowCandle(this)">
+                            <div class="flame"></div>
+                        </div>
+                        <div class="candle" onclick="blowCandle(this)">
+                            <div class="flame"></div>
+                        </div>
+                        <div class="candle" onclick="blowCandle(this)">
+                            <div class="flame"></div>
+                        </div>
+                        <div class="candle" onclick="blowCandle(this)">
+                            <div class="flame"></div>
+                        </div>
+                        <div class="candle" onclick="blowCandle(this)">
+                            <div class="flame"></div>
+                        </div>
+                    </div>
+                </div>
+                <p id="wish-text" style="color: #2c3e50; font-size: 1.1rem; margin-top: 20px; font-style: italic;">
+                    Click on each candle to blow it out and make your wish come true
+                </p>
+            </div>
+
+            <div class="music-section">
+                <h2 class="music-title">Our Special Songs</h2>
+                <div class="music-controls">
+                    <button class="elegant-button" onclick="playMusic()">Play Music</button>
+                    <button class="elegant-button" onclick="pauseMusic()">Pause Music</button>
+                    <button class="elegant-button" onclick="playYouTubeMusic()">Play Next Song</button>
+                </div>
+                <audio id="music-player" controls style="width: 100%; margin-top: 20px; display: none;"></audio>
+            </div>
+
+            <div class="photo-section">
+                <h2 class="photo-title">Our Precious Memories</h2>
+                <div class="photo-gallery" id="photo-gallery"></div>
+            </div>
+
+            <p class="footer-text">Forever enchanted by you, my heart sings your name with every beat.</p>
+        </div>
+
+        <!-- Love Letter Page -->
+        <div class="letter-page" id="letter-page">
+            <button class="back-button" onclick="goBack()">← Back to Celebration</button>
+            
+            <div class="header">
+                <h1 class="main-title">A Private Love Letter</h1>
+                <p class="subtitle">For My Eyes Only</p>
+            </div>
+
+            <div class="love-letter-section">
+                <div class="letter-header">
+                    <h2 class="letter-title">To My Dearest Goki</h2>
+                    <p class="letter-date" id="current-date"></p>
+                </div>
+                
+                <div class="letter-content" id="letter-content">
+                    <p>My beloved <span class="highlight">Goki</span>,</p>
+                    
+                    <p>As I write these words on your special day, my heart overflows with emotions that mere language struggles to capture. Today marks another year of your beautiful existence, and I find myself overwhelmed with gratitude for having you in my life.</p>
+                    
+                    <p>You are my <span class="highlight">Queen</span>, my precious treasure, the light that illuminates even my darkest days. Your laughter is the melody that makes my soul dance, and your smile is the sunrise that brightens my world every morning.</p>
+                    
+                    <p>My sweet <span class="highlight">Cutie</span>, you possess a rare beauty that transcends the physical realm. Your kindness touches everyone around you, your intelligence inspires me daily, and your love has transformed me into a better person.</p>
+                    
+                    <p>On this special day, I want you to know that you are not just my girlfriend, but my best friend, my confidante, and my greatest love. You are the woman I admire, respect, and cherish with every fiber of my being.</p>
+                    
+                    <p>As we celebrate another year of your incredible journey, I promise to continue loving you with the same intensity that fills my heart today. You deserve all the happiness in the world, and I consider myself blessed to be the one who gets to witness your dreams come true.</p>
+                    
+                    <p>Happy Birthday, my beautiful <span class="highlight">Goki</span>. Here's to many more years of love, laughter, and unforgettable memories together.</p>
+                </div>
+                
+                <div class="letter-signature">
+                    <p>Forever yours,<br>Your devoted love</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <button class="elegant-button" onclick="showNewLetter()">Read Another Letter</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentLetterIndex = 0;
+        let candlesBlown = 0;
+        let balloonsPopped = 0;
+        let currentMusic = null;
+        
+        const loveLetters = [
+            {
+                content: `<p>My beloved <span class="highlight">Goki</span>,</p>
+                
+                <p>As I write these words on your special day, my heart overflows with emotions that mere language struggles to capture. Today marks another year of your beautiful existence, and I find myself overwhelmed with gratitude for having you in my life.</p>
+                
+                <p>You are my <span class="highlight">Queen</span>, my precious treasure, the light that illuminates even my darkest days. Your laughter is the melody that makes my soul dance, and your smile is the sunrise that brightens my world every morning.</p>
+                
+                <p>My sweet <span class="highlight">Cutie</span>, you possess a rare beauty that transcends the physical realm. Your kindness touches everyone around you, your intelligence inspires me daily, and your love has transformed me into a better person.</p>
+                
+                <p>On this special day, I want you to know that you are not just my girlfriend, but my best friend, my confidante, and my greatest love. You are the woman I admire, respect, and cherish with every fiber of my being.</p>
+                
+                <p>As we celebrate another year of your incredible journey, I promise to continue loving you with the same intensity that fills my heart today. You deserve all the happiness in the world, and I consider myself blessed to be the one who gets to witness your dreams come true.</p>
+                
+                <p>Happy Birthday, my beautiful <span class="highlight">Goki</span>. Here's to many more years of love, laughter, and unforgettable memories together.</p>`
+            },
+            {
+                content: `<p>My dearest <span class="highlight">Cutie</span>,</p>
+                
+                <p>Time has a beautiful way of showing us what truly matters, and with each passing day, you become more precious to me. Your birthday is not just a celebration of another year, but a celebration of the extraordinary person you are.</p>
+                
+                <p>You are my <span class="highlight">Queen</span>, ruling over my heart with grace and love. Your wisdom guides me, your strength supports me, and your love completes me in ways I never thought possible.</p>
+                
+                <p>My wonderful <span class="highlight">Goki</span>, you have this incredible ability to make the ordinary feel magical. Whether we're sharing quiet moments or embarking on new adventures, you bring joy and meaning to every experience.</p>
+                
+                <p>I am constantly amazed by your compassion, your determination, and your beautiful spirit. You inspire me to be better, to love deeper, and to appreciate the precious gift of life we share together.</p>
+                
+                <p>On this special day, I want to remind you that you are loved beyond measure. You are cherished, admired, and celebrated not just today, but every day of the year.</p>
+                
+                <p>Happy Birthday, my love. May this new year bring you all the happiness and success you deserve.</p>`
+            },
+            {
+                content: `<p>To my extraordinary <span class="highlight">Goki</span>,</p>
+                
+                <p>There are moments in life that take our breath away, and meeting you was one of those moments. Today, as we celebrate your birthday, I am reminded of how blessed I am to call you mine.</p>
+                
+                <p>You are my <span class="highlight">Cutie</span>, bringing sweetness and joy to every day. Your presence in my life is like a constant spring, always bringing new growth, new hope, and new reasons to smile.</p>
+                
+                <p>My beloved <span class="highlight">Queen</span>, you carry yourself with such dignity and grace. You face challenges with courage, embrace opportunities with enthusiasm, and love with your whole heart.</p>
+                
+                <p>I love how you make me laugh when I'm serious, how you calm me when I'm anxious, and how you believe in me even when I doubt myself. Your love is my anchor, my comfort, and my greatest treasure.</p>
+                
+                <p>As you embark on another year of life, know that I will be by your side, supporting your dreams, celebrating your victories, and loving you unconditionally through every season.</p>
+                
+                <p>Happy Birthday, my beautiful one. You are loved more than words can express.</p>`
+            }
+        ];
+
+        // Predefined photos from folder
+        const photoFolder = [
+            'photos/memory1.jpg',
+            'photos/memory2.jpg',
+            'photos/memory3.jpg'
+        ];
+
+        // Predefined YouTube audio tracks (using sample MP3 URLs for demonstration)
+        const youtubeTracks = [
+            'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+            'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
+            'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3'
+        ];
+        let currentYouTubeTrackIndex = 0;
+
+        function popBalloon(balloon) {
+            if (!balloon.classList.contains('popped')) {
+                balloon.classList.add('popped');
+                balloonsPopped++;
+                createSparkles(balloon);
+                
+                if (balloonsPopped === 5) {
+                    setTimeout(() => {
+                        document.querySelector('.surprise-button').style.display = 'block';
+                    }, 600);
+                }
+            }
+        }
+
+        function showSurprise() {
+            const mainPage = document.getElementById('main-page');
+            const letterPage = document.getElementById('letter-page');
+            
+            mainPage.style.display = 'none';
+            letterPage.style.display = 'block';
+            createCelebration();
+        }
+
+        function goBack() {
+            const mainPage = document.getElementById('main-page');
+            const letterPage = document.getElementById('letter-page');
+            
+            letterPage.style.display = 'none';
+            mainPage.style.display = 'block';
+            createElegantAnimation();
+        }
+
+        function playMusic() {
+            const musicPlayer = document.getElementById('music-player');
+            if (currentMusic) {
+                musicPlayer.play();
+            }
+        }
+
+        function pauseMusic() {
+            const musicPlayer = document.getElementById('music-player');
+            musicPlayer.pause();
+        }
+
+        function playYouTubeMusic() {
+            const musicPlayer = document.getElementById('music-player');
+            musicPlayer.src = youtubeTracks[currentYouTubeTrackIndex];
+            musicPlayer.play();
+            currentYouTubeTrackIndex = (currentYouTubeTrackIndex + 1) % youtubeTracks.length;
+            currentMusic = musicPlayer.src;
+        }
+
+        function showNewLetter() {
+            currentLetterIndex = (currentLetterIndex + 1) % loveLetters.length;
+            const letterContent = document.getElementById('letter-content');
+            letterContent.style.opacity = '0';
+            letterContent.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                letterContent.innerHTML = loveLetters[currentLetterIndex].content;
+                letterContent.style.opacity = '1';
+                letterContent.style.transform = 'translateY(0)';
+                createElegantAnimation();
+            }, 300);
+        }
+
+        function blowCandle(candle) {
+            const flame = candle.querySelector('.flame');
+            if (!flame.classList.contains('blown')) {
+                flame.classList.add('blown');
+                candlesBlown++;
+                
+                createSparkles(candle);
+                
+                if (candlesBlown === 5) {
+                    setTimeout(() => {
+                        document.getElementById('wish-text').innerHTML = 
+                            "All candles have been blown out. Your wish is now traveling to the stars, my love.";
+                        createCelebration();
+                    }, 600);
+                }
+            }
+        }
+
+        function createSparkles(element) {
+            for (let i = 0; i < 3; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'particle';
+                sparkle.style.position = 'absolute';
+                sparkle.style.width = '6px';
+                sparkle.style.height = '6px';
+                sparkle.style.background = '#FFD700';
+                sparkle.style.borderRadius = '50%';
+                sparkle.style.pointerEvents = 'none';
+                sparkle.style.zIndex = '1000';
+                
+                const rect = element.getBoundingClientRect();
+                sparkle.style.left = (rect.left + Math.random() * rect.width) + 'px';
+                sparkle.style.top = (rect.top + Math.random() * rect.height) + 'px';
+                
+                document.body.appendChild(sparkle);
+                
+                sparkle.style.animation = 'floatParticle 2s ease-out forwards';
+                
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 2000);
+            }
+        }
+
+        function createElegantAnimation() {
+            const particles = document.getElementById('floating-particles');
+            
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.animationDelay = Math.random() * 2 + 's';
+                    particle.style.background = `hsl(${Math.random() * 60 + 200}, 70%, 80%)`;
+                    
+                    particles.appendChild(particle);
+                    
+                    setTimeout(() => {
+                        particle.remove();
+                    }, 6000);
+                }, i * 200);
+            }
+        }
+
+        function createCelebration() {
+            const particles = document.getElementById('floating-particles');
+            
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.animationDelay = Math.random() * 2 + 's';
+                    particle.style.background = `hsl(${Math.random() * 360}, 70%, 70%)`;
+                    particle.style.width = (Math.random() * 6 + 3) + 'px';
+                    particle.style.height = (Math.random() * 6 + 3) + 'px';
+                    
+                    particles.appendChild(particle);
+                    
+                    setTimeout(() => {
+                        particle.remove();
+                    }, 6000);
+                }, i * 100);
+            }
+        }
+
+        function loadPhotosFromFolder() {
+            const gallery = document.getElementById('photo-gallery');
+            photoFolder.forEach(photoPath => {
+                const photoItem = document.createElement('div');
+                photoItem.className = 'photo-item';
+                photoItem.innerHTML = `<img src="${photoPath}" alt="Our Memory">`;
+                gallery.appendChild(photoItem);
+            });
+        }
+
+        // Set current date
+        document.getElementById('current-date').textContent = new Date().toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+
+        // Create subtle particle animation
+        setInterval(() => {
+            if (Math.random() > 0.7) {
+                createElegantAnimation();
+            }
+        }, 3000);
+
+        // Initial animation and photo loading
+        setTimeout(() => {
+            createElegantAnimation();
+            loadPhotosFromFolder();
+        }, 2000);
+    </script>
+</body>
+</html>
