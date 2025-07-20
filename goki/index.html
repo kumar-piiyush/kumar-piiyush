@@ -902,9 +902,15 @@
 
         // Predefined photos from folder
         const photoFolder = [
-            'photos/Photo-1.jpeg',
-            'photos/Photo-2.jpeg',
-            'photos/Photo-3.jpeg'
+            'photos/p1.jpeg',
+            'photos/p2.png',
+            'photos/p3.jpeg',
+            'photos/p4.jpeg',
+            'photos/p5.jpeg',
+            'photos/p6.jpeg',
+            'photos/p7.png',
+            'photos/p8.jpeg',
+            'photos/p9.jpeg'
         ];
 
         // Predefined audio file from folder
@@ -1145,8 +1151,7 @@
                 const photoItem = document.createElement('div');
                 photoItem.className = 'photo-item';
                 photoItem.innerHTML = `
-                    <img src="${photoPath}" alt="Our Memory">
-                    <p>Memory ${index + 1} 📸</p>
+                    <img src="${photoPath}" alt="">
                 `;
                 gallery.appendChild(photoItem);
             });
